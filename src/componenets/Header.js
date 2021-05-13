@@ -12,6 +12,7 @@ import{
     setSignOut
 } from '../features/user/userSlice';
 import {useDispatch, useSelector} from "react-redux";
+import {Link} from 'react-router-dom';
 
 
 function Header() {
@@ -65,30 +66,30 @@ function Header() {
                 ) :
                 <>
                     <NavMenu>
-                        <a>
+                        <div >
                             <img src="/images/home-icon.svg"/>
                             <span>HOME</span>
-                        </a>
-                        <a>
+                        </div >
+                        <div >
                             <img src="/images/search-icon.svg"/>
                             <span>SEARCH</span>
-                        </a>
-                        <a>
+                        </div>
+                        <div  >
                             <img src="/images/watchlist-icon.svg"/>
                             <span>WATCHLIST</span>
-                        </a>
-                        <a>
+                        </div>
+                        <div >
                             <img src="/images/original-icon.svg"/>
                             <span>ORIGINALS</span> 
-                        </a>
-                        <a>
+                        </div>
+                        <div >
                             <img src="/images/movie-icon.svg"/>
                             <span>MOVIES</span> 
-                        </a>
-                        <a>
+                        </div>
+                        <div >
                             <img src="/images/series-icon.svg"/>
                             <span>SERIES</span> 
-                        </a>
+                        </div>
                     </NavMenu>
                     <Userimg onClick={signOut}  src={userPhoto} />
                 </>
@@ -117,7 +118,7 @@ const NavMenu=styled.div`
     flex:1;
     align-items: center;
     margin-left: 25px;
-    a {
+    div {
         display: flex;
         align-items: center;
         padding: 0 22px;

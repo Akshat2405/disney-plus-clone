@@ -6,19 +6,33 @@ import Movies from './Movies';
 import db from "../firebase";
 import { useDispatch } from "react-redux";
 import { setMovies } from '../features/movie/movieSlice'
+import {setClouserMovies} from '../features/movieClouser/movieClouserSlice';
 
 
 function Home() {
     const dispatch = useDispatch();
-    useEffect(()=>{ 
+    useEffect(()=>{
         db.collection("movies").onSnapshot((snapshot) => {
             let tempMovies = snapshot.docs.map((doc) => {
                 return { id: doc.id, ...doc.data() };
             });
+            console.log(tempMovies);
             dispatch(
                 setMovies(tempMovies)
             );
-        })
+        });
+        db.collection("moviesClouser").onSnapshot((snapshot) => {
+            let tempMovies = snapshot.docs.map((doc) => {
+                return { id: doc.id, ...doc.data() };
+            });
+            console.log(tempMovies);
+            dispatch(
+                setClouserMovies(tempMovies)
+            );
+        });
+        
+        
+            
     }, [])
     return (
         <Container>

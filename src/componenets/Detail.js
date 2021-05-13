@@ -12,17 +12,29 @@ function Detail() {
     const [ movie, setMovie ] = useState();
 
     useEffect(()=>{
+        let ck=0;
         db.collection("movies")
         .doc(id)
         .get()
         .then((doc)=>{
             if(doc.exists) {
                 setMovie(doc.data());
-                console.log(doc.data());
-            } else {
-                history.push('/')
+                ck=1;
             }
         })
+        db.collection("moviesClouser")
+        .doc(id)
+        .get()
+        .then((doc)=>{
+            if(doc.exists) {
+                setMovie(doc.data());
+            }
+            else if(ck==0){
+                history.push("/");
+            }
+        })
+        
+
     }, [])
 
     return (

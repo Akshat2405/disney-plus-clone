@@ -6,6 +6,7 @@ import { selectMovies } from "../features/movie/movieSlice";
 
 function Movies() {
     const movies = useSelector(selectMovies);
+    console.log(movies);
     return (
         <Container>
             <h4>Recommended for You</h4>
@@ -19,6 +20,7 @@ function Movies() {
                         </Wrap>
                     ))
                 }
+                
             </Content>
         </Container>
     )
