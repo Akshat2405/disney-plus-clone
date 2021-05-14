@@ -7,6 +7,7 @@ import db from "../firebase";
 import { useDispatch } from "react-redux";
 import { setMovies } from '../features/movie/movieSlice'
 import {setClouserMovies} from '../features/movieClouser/movieClouserSlice';
+import {setTrendingMovies} from '../features/movieTrending/movieTrendingSlice';
 
 
 function Home() {
@@ -16,7 +17,7 @@ function Home() {
             let tempMovies = snapshot.docs.map((doc) => {
                 return { id: doc.id, ...doc.data() };
             });
-            console.log(tempMovies);
+            // console.log(tempMovies);
             dispatch(
                 setMovies(tempMovies)
             );
@@ -25,11 +26,21 @@ function Home() {
             let tempMovies = snapshot.docs.map((doc) => {
                 return { id: doc.id, ...doc.data() };
             });
-            console.log(tempMovies);
+            // console.log(tempMovies);
             dispatch(
                 setClouserMovies(tempMovies)
             );
         });
+        db.collection("moviesTrending").onSnapshot((snapshot) => {
+            let tempMovies = snapshot.docs.map((doc) => {
+                return { id: doc.id, ...doc.data() };
+            });
+            console.log(tempMovies);
+            dispatch(
+                setTrendingMovies(tempMovies)
+            );
+        });
+        
         
         
             

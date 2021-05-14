@@ -3,9 +3,11 @@ import styled from 'styled-components';
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectMovies } from "../features/movie/movieSlice";
+import {selectTrendingMovies} from '../features/movieTrending/movieTrendingSlice';
 
 function Movies() {
     const movies = useSelector(selectMovies);
+    const trending=useSelector(selectTrendingMovies);
     console.log(movies);
     return (
         <Container>
@@ -13,6 +15,20 @@ function Movies() {
             <Content>
                 { movies &&
                     movies.map((movie, index)=>(
+                        <Wrap key={index}>
+                            <Link to={`/detail/${movie.id}`} >
+                                <img src={movie.cardImg} alt={movie.title}/>
+                            </Link>
+                        </Wrap>
+                    ))
+                }
+                
+            </Content>
+
+            <h4>Trending Now</h4>
+            <Content>
+                { trending &&
+                    trending.map((movie, index)=>(
                         <Wrap key={index}>
                             <Link to={`/detail/${movie.id}`} >
                                 <img src={movie.cardImg} alt={movie.title}/>
